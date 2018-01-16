@@ -119,6 +119,7 @@ dependencies {
     //test
     api rootProject.ext.dependencies["timber"]
     testApi rootProject.ext.dependencies["junit"]
+    compile rootProject.ext.dependencies["multidex"] //Android 5.0以下出现 java.lang.NoClassDefFoundError
 }
 
 
