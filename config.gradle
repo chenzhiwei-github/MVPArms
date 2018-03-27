@@ -3,7 +3,7 @@ ext {
     android = [
                compileSdkVersion       : 27,
                buildToolsVersion       : "27.0.3",
-               minSdkVersion           : 15,
+               minSdkVersion           : 14,
                targetSdkVersion        : 27,
                versionCode             : 1,
                versionName             : "1.0.0"
@@ -60,6 +60,7 @@ ext {
                 "rxlifecycle-components"   : "com.trello:rxlifecycle-components:${version["rxlifecycleSdkVersion"]}",
                 "rxcache"                  : "com.github.VictorAlbertos.RxCache:runtime:1.7.0-1.x",
                 "rxcache-jolyglot-gson"    : "com.github.VictorAlbertos.Jolyglot:gson:0.0.3",
+                "rxcache-jolyglot-fastjson": "com.github.VictorAlbertos.Jolyglot:fastjson:0.0.4",
                 "rxbinding-recyclerview-v7": "com.jakewharton.rxbinding:rxbinding-recyclerview-v7:1.0.1",
                 "rxpermissions"            : "com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar",
                 "rxerrorhandler"           : "me.jessyan:rxerrorhandler:1.0.1",
@@ -72,11 +73,14 @@ ext {
                 "rxlifecycle2-components"   : "com.trello.rxlifecycle2:rxlifecycle-components:${version["rxlifecycle2SdkVersion"]}",
                 "rxcache2"                  : "com.github.VictorAlbertos.RxCache:runtime:1.8.3-2.x",
                 "rxpermissions2"            : "com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar",
-                "rxerrorhandler2"           : "me.jessyan:rxerrorhandler:2.1.0",
+                "rxerrorhandler2"           : "me.jessyan:rxerrorhandler:2.1.1",
 
                 //tools
                 "dagger2"                  : "com.google.dagger:dagger:${version["dagger2SdkVersion"]}",
+                "dagger2-android"          : "com.google.dagger:dagger-android:${version["dagger2SdkVersion"]}",
+                "dagger2-android-support"  : "com.google.dagger:dagger-android-support:${version["dagger2SdkVersion"]}",
                 "dagger2-compiler"         : "com.google.dagger:dagger-compiler:${version["dagger2SdkVersion"]}",
+                "dagger2-android-processor": "com.google.dagger:dagger-android-processor:${version["dagger2SdkVersion"]}",
                 "androideventbus"          : "org.simple:androideventbus:1.0.5.1",
                 "otto"                     : "com.squareup:otto:1.3.8",
                 "gson"                     : "com.google.code.gson:gson:2.8.2",

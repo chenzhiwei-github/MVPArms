@@ -1,7 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3FA862</color>
-    <color name="colorPrimaryDark">#3FA862</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="white">#FFFFFF</color>
+    <!--默认主题颜色-->
+    <color name="colorPrimary">#0484ca</color><!--对应ActionBar的颜色-->
+    <color name="colorPrimaryDark">#0484ca</color><!--对应状态栏的颜色-->
+    <color name="colorAccent">#0484ca</color><!--对应控件的颜色-->
+    <color name="colorPrimary_mall">#FB4865</color><!--对应ActionBar的颜色-->
+
+    <!--纯色-->
+    <color name="colorWhite">#FFFFFF</color><!--白色色-->
+    <color name="colorBlack">#000000</color><!-- 黑色 -->
+    <color name="colorTransparent">#00000000</color><!--透明色-->
+    <!--控件颜色-->
+    <color name="colorFootLine">#DDDDDD</color><!--默认分割线颜色 默认-->
+    <color name="colorBtnBackground">#057dff</color><!--按钮颜色 交通缴罚-->
+    <color name="colorClickBtnBackground">#80057dff</color><!--按钮点击颜色 交通缴罚-->
+    <color name="colorPressBtnBackground">#cccccc</color><!-- TextView 内容次色调 默认 -->
+
+    <color name="colorContentBackground">#eeeeee</color><!--对应内容的背景颜色 默认-->
+    <color name="colorPrimaryBlack">#000000</color><!-- 黑色 -->
+    <color name="colorPrimaryWhite">#ffffff</color><!-- 白色 -->
+    <color name="colorMainColour">#ff9f42</color><!--主色调-->
+    <color name="colorAuxiliaryColour">#F8B62A</color><!--辅色调-->
+    <color name="colorSecondColour">#FF9900</color><!--次色调-->
+    <color name="colorVioletColour">#0198ff</color><!--紫色调-->
+    <color name="colorBackground">#f5f5f5</color><!--背景颜色-->
+    <color name="colorStatusBarBackground">#535353</color><!--状态栏颜色-->
+    <color name="colorMainTone">#2EA7E0</color><!--蓝色主色调-->
+    <color name="colorPlaceOrderBackground">#9FA1A1</color><!--灰色背景-->
+    <color name="colorPressBackground">#E3E3E3</color> <!--按钮按下背景色-->
+
+    <color name="colorTextTitle">#3E3A39</color><!-- TextView 标题栏 标题颜色 默认 -->
+    <color name="colorTextMainColour">#5d5d5d</color><!-- TextView 内容主色调 默认 -->
+    <color name="colorTextAuxiliaryColour">#999999</color><!-- TextView 内容辅色调 默认 -->
+    <color name="colorTextHintColour">#cccccc</color><!-- TextView 内容次色调 默认 -->
+    <color name="colorTextMainTone">#323232</color><!--字体主色调-->
+    <color name="colorTextTab">#333333</color><!--tab主色调-->
+    <color name="colorMainTonePressed">#802EA7E0</color><!--蓝色主色调-->
+    <color name="colorLoginBackground">#036EB8</color><!--登录按钮背景色-->
+    <color name="colorLoginPressed">#80036EB8</color><!--登录按钮按下的颜色-->
+
+    <color name="colorEditStroke">#ECECEC</color><!--editView 背景描边颜色 默认-->
+    <color name="colorEditHide">#c2c0c0</color><!--editView hide字体颜色 默认-->
+    <color name="colorEditText">#1C1B1A</color><!--editView text字体颜色 默认-->
+
+    <color name="colorBordercolor">#F29901</color><!--边框颜色-->
+    <color name="colorTextGold">#cc9900</color>
+    <color name="colorTextOrange">#ff9212</color>
+    <color name="colorDivider">#cccccc</color>
+    <color name="colorRed">#ff0000</color>
+    <color name="colorButton">#B5B5B5</color>
+    <color name="colorSkyBlue">#64A6D1</color>
+    <color name="colorBorderInSignOn">#C5CCE4</color>
+    <color name="color6">#666666</color>
+    <color name="colorPopPressed">#ADB2B8</color>
+    <color name="colorPopNormal">#FFFFFF</color>
+    <color name="color_goods_money">#ff5700</color>
+    <color name="color_goods_bg">#FB4865</color>
+    <color name="color_identification">#DCEFFA</color>
+    <color name="color_identification_title">#33B0F5</color>
+    <color name="color_identification_text">#B3B3B3</color>
 </resources>

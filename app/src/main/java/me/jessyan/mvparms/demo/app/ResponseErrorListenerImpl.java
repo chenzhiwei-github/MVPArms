@@ -1,12 +1,12 @@
-/**
+/*
  * Copyright 2017 JessYan
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,6 +27,7 @@ import org.json.JSONException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
+import me.jessyan.mvparms.demo.app.utils.net.NetworkUtils;
 import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 import retrofit2.HttpException;
 import timber.log.Timber;
@@ -44,6 +45,7 @@ public class ResponseErrorListenerImpl implements ResponseErrorListener {
 
     @Override
     public void handleResponseError(Context context, Throwable t) {
+        NetworkUtils.hideLoading();
         Timber.tag("Catch-Error").w(t.getMessage());
         //这里不光是只能打印错误,还可以根据不同的错误作出不同的逻辑处理
         String msg = "未知错误";
@@ -66,6 +68,7 @@ public class ResponseErrorListenerImpl implements ResponseErrorListener {
     }
 
     private String convertStatusCode(HttpException httpException) {
+        NetworkUtils.hideLoading();
         String msg;
         if (httpException.code() == 500) {
             msg = "服务器发生错误";

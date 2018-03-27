@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300px"
+    android:layout_height="300px"
+    android:gravity="center">
+    <!--android:background="@drawable/loading_bg"-->
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="150px"
+        android:layout_height="150px"
+        android:layout_centerInParent="true"
+        android:indeterminateTintMode="src_atop"/>
+
+    <!--<ImageView-->
+    <!--android:id="@+id/progressbar"-->
+    <!--android:layout_width="150px"-->
+    <!--android:layout_height="150px"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:layout_gravity="center"/>-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progressbar"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10px"
+        android:text="努力加载中"
+        android:textSize="40px"/>
+
+</com.zhy.autolayout.AutoRelativeLayout>

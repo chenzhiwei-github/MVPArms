@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
@@ -68,6 +69,9 @@ dependencies {
     implementation(rootProject.ext.dependencies["rxcache-jolyglot-gson"]) {
         exclude module: 'gson'
     }
+    implementation(rootProject.ext.dependencies["rxcache-jolyglot-fastjson"]) {
+        exclude module: 'fastjson'
+    }
     api(rootProject.ext.dependencies["rxlifecycle2"]) {
         exclude module: 'rxjava'
         exclude module: 'jsr305'
@@ -120,7 +124,18 @@ dependencies {
     api rootProject.ext.dependencies["timber"]
     testApi rootProject.ext.dependencies["junit"]
     compile rootProject.ext.dependencies["multidex"] //Android 5.0以下出现 java.lang.NoClassDefFoundError
+
+    //my tools
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    compile "com.android.support.constraint:constraint-layout:1.0.2"
+    compile "com.alibaba:fastjson:1.2.34"
+    compile "top.zibin:Luban:1.1.3"
+    compile "com.qmuiteam:qmui:1.0.7"
+    compile "com.jakewharton.rxbinding2:rxbinding:2.1.0"
 }
 
 
 apply from: 'bintray.gradle'
+repositories {
+    mavenCentral()
+}

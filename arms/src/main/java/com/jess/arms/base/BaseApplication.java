@@ -1,12 +1,12 @@
-/**
+/*
  * Copyright 2017 JessYan
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,6 +22,7 @@ import android.support.multidex.MultiDexApplication;
 import com.jess.arms.base.delegate.AppDelegate;
 import com.jess.arms.base.delegate.AppLifecycles;
 import com.jess.arms.di.component.AppComponent;
+import com.jess.arms.utils.ArmsUtils;
 import com.jess.arms.utils.Preconditions;
 
 /**
@@ -36,6 +37,7 @@ import com.jess.arms.utils.Preconditions;
  */
 public class BaseApplication extends MultiDexApplication implements App {
     private AppLifecycles mAppDelegate;
+    private static BaseApplication instance;
 
     /**
      * 这里会在 {@link BaseApplication#onCreate} 之前被调用,可以做一些较早的初始化
@@ -56,6 +58,7 @@ public class BaseApplication extends MultiDexApplication implements App {
         super.onCreate();
         if (mAppDelegate != null)
             this.mAppDelegate.onCreate(this);
+        instance = this;
     }
 
     /**
@@ -69,10 +72,10 @@ public class BaseApplication extends MultiDexApplication implements App {
     }
 
     /**
-     * 将 {@link AppComponent} 返回出去,供其它地方使用,{@link AppComponent} 中声明的方法所返回的实例
-     * 在 {@link #getAppComponent()}拿到对象后都可以直接使用
+     * 将 {@link AppComponent} 返回出去, 供其它地方使用, {@link AppComponent} 接口中声明的方法所返回的实例, 在 {@link #getAppComponent()} 拿到对象后都可以直接使用
      *
-     * @return
+     * @see ArmsUtils#obtainAppComponentFromContext(Context) 可直接获取 {@link AppComponent}
+     * @return AppComponent
      */
     @NonNull
     @Override
@@ -80,6 +83,10 @@ public class BaseApplication extends MultiDexApplication implements App {
         Preconditions.checkNotNull(mAppDelegate, "%s cannot be null", AppDelegate.class.getName());
         Preconditions.checkState(mAppDelegate instanceof App, "%s must be implements %s", AppDelegate.class.getName(), App.class.getName());
         return ((App) mAppDelegate).getAppComponent();
+    }
+
+    public static BaseApplication getInstance() {
+        return instance;
     }
 
 }

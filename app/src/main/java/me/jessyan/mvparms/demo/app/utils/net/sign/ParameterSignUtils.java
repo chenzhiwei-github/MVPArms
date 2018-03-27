@@ -1,6 +1,9 @@
 package me.jessyan.mvparms.demo.app.utils.net.sign;
 
+import android.annotation.SuppressLint;
 import android.text.TextUtils;
+
+import com.jess.arms.utils.LogUtils;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -26,30 +29,30 @@ public class ParameterSignUtils {
      */
     public static Map<String, String> buildCommonParameter(String url, Map<String, String> maps) {
 
-        /*打印请求url*/
-        getParameterUrl(url, maps);
-
         if (TextUtils.isEmpty(url)) {
             return new HashMap<>();
         }
         //提交订单公共参数
 //        if (url.contains(ApiConfiguration.Domain.CARD_BASE_URL)) {
-            Map<String, String> sMap = new HashMap<>();
-            sMap.put("merCode", "1000");//合作伙伴账号（非空，由平台分配）
-            sMap.put("terminalId", "1000");//合作伙伴开发的渠道的编号（由平台分配，为空字符串时代表合作伙伴自身）
-            sMap.put("terminalType", "androidClient");//调用接口的终端编号，用于记录调用接口的入口，可以进行权限控制（非空，合作伙伴自定义）
-            sMap.put("dataType", "json");//请求输出的数据格式
-            sMap.put("version", "1.0.0");//版本号
+        Map<String, String> sMap = new HashMap<>();
+        sMap.put("merCode", "1000");//合作伙伴账号（非空，由平台分配）
+        sMap.put("terminalId", "1000");//合作伙伴开发的渠道的编号（由平台分配，为空字符串时代表合作伙伴自身）
+        sMap.put("terminalType", "androidClient");//调用接口的终端编号，用于记录调用接口的入口，可以进行权限控制（非空，合作伙伴自定义）
+        sMap.put("dataType", "json");//请求输出的数据格式
+        sMap.put("version", "1.0.0");//版本号
 //            if (!TextUtils.isEmpty(PreferenceUtils.getReqtime())) {
 //                sMap.put("reqtime", PreferenceUtils.getReqtime());//版本号
 //
 //            }
-            SimpleDateFormat _simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String _date = _simpleDateFormat.format(new Date());
-            sMap.put("reqtime", _date);//请求时间，格式：yyyyMMddhhmmss
-            sMap.putAll(maps); //添加请求参数
-            sMap.put("sign", buildSignature(url, sMap)); //所有参数进行验签
-            return sMap;
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat _simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String _date = _simpleDateFormat.format(new Date());
+        sMap.put("reqtime", _date);//请求时间，格式：yyyyMMddhhmmss
+        sMap.putAll(maps); //添加请求参数
+        sMap.put("sign", buildSignature(url, sMap)); //所有参数进行验签
+
+        /*打印请求url*/
+        getParameterUrl(url, sMap);
+        return sMap;
 //        } else {
 //            //业务服务器公共参数
 //            Map<String, String> sMap = new HashMap<>();
@@ -116,7 +119,8 @@ public class ParameterSignUtils {
         }
 
         //打印请求信息
-        Timber.tag("Request_Url").w(url.replace("\n", ""));
+//        Timber.tag("Request_Url").w(url.replace("\n", ""));
+        LogUtils.errorInfo("Request_Url", url.replace("\n", ""));
     }
 
     /**

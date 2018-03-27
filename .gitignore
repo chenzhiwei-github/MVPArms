@@ -1,4 +1,4 @@
-# Built application files
+﻿# Built application files
 *.apk
 *.ap_
 
@@ -41,3 +41,16 @@ captures/
 
 # MacOS
 .DS_Store
+
+# 自定义过滤规则
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+# Ignore gradle files ����ӵ�git
+app/keystore/signing.properties
+app/keystore/zhangwo.keystore
+*.orig

@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
@@ -47,6 +49,9 @@ android {
         disable "ResourceType"
         abortOnError false
     }
+    kapt {
+        generateStubs = true
+    }
 }
 
 buildscript {
@@ -64,12 +69,14 @@ dependencies {
     }
     //tools
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
+    kapt rootProject.ext.dependencies["dagger2-compiler"]
     implementation rootProject.ext.dependencies["progressmanager"]
     implementation rootProject.ext.dependencies["retrofit-url-manager"]
     implementation rootProject.ext.dependencies["lifecyclemodel"]
     //view
-    annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
+    kapt(rootProject.ext.dependencies["butterknife-compiler"]) {
         exclude module: 'support-annotations'
+        exclude module: 'butterknife-annotations'
     }
     implementation rootProject.ext.dependencies["paginate"]
     //arms
@@ -85,7 +92,7 @@ dependencies {
     //compile 'zlc.season:rxdownload2:2.0.4'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile rootProject.ext.dependencies["smartRefreshLayout"]
-    compile 'com.alibaba:fastjson:1.1.67.android'
+    kapt "com.android.databinding:compiler:3.0.1"
 }
 repositories {
     mavenCentral()

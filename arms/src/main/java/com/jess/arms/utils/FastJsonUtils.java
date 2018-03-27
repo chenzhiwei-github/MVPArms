@@ -1,10 +1,13 @@
-package me.jessyan.mvparms.demo.app.utils.net;
+package com.jess.arms.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.parser.Feature;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author weijianxing
@@ -29,5 +32,13 @@ public class FastJsonUtils {
 
     public static String toJSONString(Object object) {
         return JSON.toJSONString(object);
+    }
+
+    public static <K, V> Map<K, V> parseToMap(String json,
+                                              Class<K> keyType,
+                                              Class<V> valueType) {
+        return JSON.parseObject(json,
+                new TypeReference<Map<K, V>>(keyType, valueType) {
+                }, Feature.OrderedField);
     }
 }

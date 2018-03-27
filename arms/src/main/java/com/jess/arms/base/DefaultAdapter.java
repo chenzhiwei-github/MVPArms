@@ -1,18 +1,18 @@
 /**
-  * Copyright 2017 JessYan
-  *
-  * Licensed under the Apache License, Version 2.0 (the "License");
-  * you may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at
-  *
-  *      http://www.apache.org/licenses/LICENSE-2.0
-  *
-  * Unless required by applicable law or agreed to in writing, software
-  * distributed under the License is distributed on an "AS IS" BASIS,
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  */
+ * Copyright 2017 JessYan
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.jess.arms.base;
 
 import android.support.v7.widget.RecyclerView;
@@ -51,7 +51,7 @@ public abstract class DefaultAdapter<T> extends RecyclerView.Adapter<BaseHolder<
     @Override
     public BaseHolder<T> onCreateViewHolder(ViewGroup parent, final int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(getLayoutId(viewType), parent, false);
-        mHolder = getHolder(view, viewType);
+        mHolder = new BaseHolder<>(view);
         mHolder.setOnItemClickListener(new BaseHolder.OnViewClickListener() {//设置Item点击事件
             @Override
             public void onViewClick(View view, int position) {
@@ -71,9 +71,18 @@ public abstract class DefaultAdapter<T> extends RecyclerView.Adapter<BaseHolder<
      */
     @Override
     public void onBindViewHolder(BaseHolder<T> holder, int position) {
-        holder.setData(mInfos.get(position), position);
+        bindData(holder, position, mInfos != null ? mInfos.get(position) : null);
     }
 
+    @Override
+    public void onBindViewHolder(BaseHolder<T> holder, int position, List<Object> payloads) {
+        //判断数据更改是否为空，说明是新增的，直接去绑定数据
+        if (payloads == null || payloads.isEmpty()) {
+            onBindViewHolder(holder, position);
+        }
+    }
+
+    public abstract void bindData(BaseHolder holder, int position, T item);
 
     /**
      * 返回数据的个数
@@ -82,7 +91,7 @@ public abstract class DefaultAdapter<T> extends RecyclerView.Adapter<BaseHolder<
      */
     @Override
     public int getItemCount() {
-        return mInfos.size();
+        return mInfos != null ? mInfos.size() : 0;
     }
 
 
@@ -101,15 +110,6 @@ public abstract class DefaultAdapter<T> extends RecyclerView.Adapter<BaseHolder<
     }
 
     /**
-     * 让子类实现用以提供 {@link BaseHolder}
-     *
-     * @param v
-     * @param viewType
-     * @return
-     */
-    public abstract BaseHolder<T> getHolder(View v, int viewType);
-
-    /**
      * 提供用于 {@code item} 布局的 {@code layoutId}
      *
      * @param viewType
@@ -117,6 +117,20 @@ public abstract class DefaultAdapter<T> extends RecyclerView.Adapter<BaseHolder<
      */
     public abstract int getLayoutId(int viewType);
 
+    /**
+     * 更新数据
+     *
+     * @param data
+     */
+    public void updateData(List<T> data) {
+        this.mInfos = data;
+        this.notifyDataSetChanged();
+    }
+
+    public void addData(List<T> data) {
+        this.mInfos.addAll(data);
+        this.notifyDataSetChanged();
+    }
 
     /**
      * 遍历所有{@link BaseHolder},释放他们需要释放的资源

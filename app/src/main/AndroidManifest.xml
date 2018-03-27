@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".mvp.ui.activity.UserActivity"
+            android:name=".mvp.ui.activity.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -27,9 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <!--arms UserActivity-->
-        <activity android:name=".mvp.ui.activity.MainActivity"/>
 
         <!--
         autolayout meta
